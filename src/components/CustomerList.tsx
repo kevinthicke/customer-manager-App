@@ -18,7 +18,7 @@ export default class CustomerList extends React.Component<CustomerListProps> {
         const { name, dni, edit, del } = customer;
 
         return(
-            <Card key={customer.dni} style={CustomerListItemStyle}>
+            <Card key={dni} style={CustomerListItemStyle}>
                 <Link to={`${urlpath}/${dni}`}>{name}</Link>
                 <Link to={`${urlpath}/${dni}/${edit}`}>{edit}</Link>
                 <Link to={`${urlpath}/${dni}/${del}`}>{del}</Link>

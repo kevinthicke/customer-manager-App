@@ -8,16 +8,19 @@ export interface AppFrameProps {
     footer: JSX.Element
 }
 
-const AppFrame: React.SFC<AppFrameProps> = ({ header, body, footer }) => (
-    <Container>
-        <AppHeader title={header}/>
-        <Row>
-            { body }
-        </Row>
-        <Row>
-            { footer }
-        </Row>
-    </Container>
-)
-
-export default AppFrame;
+export default class AppFrame extends React.Component<AppFrameProps> {
+    render() {
+        const { header, body, footer } = this.props;
+        return (
+            <Container>
+                <AppHeader title={header} />
+                <Row>
+                    {body}
+                </Row>
+                <Row>
+                    {footer}
+                </Row>
+            </Container>
+        )
+    }
+}
