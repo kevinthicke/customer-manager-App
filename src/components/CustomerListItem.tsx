@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { ICustomer } from '../models';
 
 export const CustomerListItemStyle: React.CSSProperties = {
     display: 'grid',
@@ -8,20 +9,18 @@ export const CustomerListItemStyle: React.CSSProperties = {
 }
 
 export interface CustomerListItemProps {
-    name: string,
-    dni: string,
-    edit: string,
-    del: string,
-    urlPath: string,
+    urlpath: string,
+    customer: ICustomer
 }
 
-const CustomerListItem: React.SFC<CustomerListItemProps> = ({ name, dni, edit, del, urlPath }) => {
-    
+const CustomerListItem: React.SFC<CustomerListItemProps> = ({ customer, urlpath }) => {
+    const { name, dni, edit, del } = customer;
+
     return(
         <Card style={CustomerListItemStyle}>
-            <Link to={`${urlPath}/${dni}`}>{ name }</Link>
-            <Link to={`${urlPath}/${dni}/${edit}`}>{ edit }</Link>
-            <Link to={`${urlPath}/${dni}/${del}`}>{ del }</Link>
+            <Link to={`${urlpath}/${dni}`}>{ name }</Link>
+            <Link to={`${urlpath}/${dni}/${edit}`}>{ edit }</Link>
+            <Link to={`${urlpath}/${dni}/${del}`}>{ del }</Link>
         </Card>
     )
 }
