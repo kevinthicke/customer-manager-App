@@ -1,9 +1,6 @@
 import * as React from 'react';
 import { Table } from 'react-bootstrap';
-
-const CustomerDataItemStyle: React.CSSProperties = {
-    fontWeight: 'normal'
-}
+import CustomerDataItem from './CustomerDataItem';
 
 export interface CustomerDataProps {
     name: string,
@@ -13,14 +10,8 @@ export interface CustomerDataProps {
 
 const CustomerData: React.SFC<CustomerDataProps> = props => {
     
-    const renderCustomerDataItems = (props) => {
-        return Object.keys(props).map(key => (
-            <tr key={key}>
-                <th>{ key }</th>
-                <th style={CustomerDataItemStyle}>{ props[key] }</th>
-            </tr>
-        ))
-    }
+    const renderCustomerDataItems = (props): JSX.Element[] => Object.keys(props).map(
+        key => <CustomerDataItem key={key} keyword={key} value={props[key]} />)
     
     return (
         <Table striped bordered hover size="sm" variant="dark">
