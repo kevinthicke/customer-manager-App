@@ -1,13 +1,34 @@
 import * as React from 'react';
-import CustomerListItem from './CustomerListItem';
 import { ICustomer } from '../models/index';
+import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
+const CustomerListItemStyle: React.CSSProperties = {
+    display: 'grid',
+    gridTemplateColumns: '5fr 1fr 1fr'
+}
 
 export interface CustomerListProps {
     customers: ICustomer[],
     urlpath: string
 }
 
-const CustomerList = ({ customers, urlpath }) => customers.map(
-    (customer: ICustomer) => <CustomerListItem key={customer.dni} customer={customer} urlpath={urlpath} />)
+export default class CustomerList extends React.Component<CustomerListProps> {
+    renderCostumerListItem(customer: ICustomer, urlpath: string) {
+        const { name, dni, edit, del } = customer;
 
-export default CustomerList;
+        return(
+            <Card key={customer.dni} style={CustomerListItemStyle}>
+                <Link to={`${urlpath}/${dni}`}>{name}</Link>
+                <Link to={`${urlpath}/${dni}/${edit}`}>{edit}</Link>
+                <Link to={`${urlpath}/${dni}/${del}`}>{del}</Link>
+            </Card>
+        )
+    }
+
+    render() {
+        const { customers, urlpath } = this.props;
+
+        return customers.map((customer: ICustomer) => this.renderCostumerListItem(customer, urlpath));
+    }
+}
