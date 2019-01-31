@@ -2,6 +2,13 @@ import * as React from 'react';
 import { Container, Row } from 'react-bootstrap';
 import AppHeader from './AppHeader';
 
+const bodyStyle: React.CSSProperties = {
+    height: '80vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+}
+
 export interface AppFrameProps {
     header: string,
     body: JSX.Element,
@@ -14,7 +21,7 @@ export default class AppFrame extends React.Component<AppFrameProps> {
         return (
             <Container>
                 <AppHeader title={header} />
-                <Row>
+                <Row style={bodyStyle}>
                     {body}
                 </Row>
                 <Row>

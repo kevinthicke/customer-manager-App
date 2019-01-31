@@ -1,10 +1,7 @@
 import * as React from 'react';
 import { Container } from 'react-bootstrap';
-import AppFrame from './components/AppFrame';
-import CustomerData from './components/CustomerData';
-import CustomerListItem from './components/CustomerListItem';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import CustomerList from './components/CustomerList';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import HomeContainer from './containers/HomeContainer';
 
 const body = (
   <div>
@@ -58,10 +55,22 @@ const customers = [
 const urlpath='/customers'
 
 export default class App extends React.Component <{}, {}> {
+  renderHome = () => <h1> Home</h1>;
+  renderCustomerList = () => <h1>Customer List</h1>;
+  renderNewCustomer = () => <h1>renderNewCustomer</h1>;
+  renderCustomer = () => <h1>render customer</h1>;
+
   render() {
     return (
       <Router>
-        <CustomerList customers={customers} urlpath={urlpath} />
+        <Container>
+          <Route exact path='/' component={HomeContainer} />
+          <Route exact path='/customers' component={this.renderCustomerList} />
+          <Switch>
+            <Route exact path='/customers/new' component={this.renderNewCustomer} />
+            <Route exact path='/customer/:dni' component={this.renderCustomer} />
+          </Switch>
+        </Container>
       </Router>
     )
   }
