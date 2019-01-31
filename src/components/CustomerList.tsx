@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ICustomer } from '../models/index';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { capitalizeFirstLetter } from '../utils/index';
 
 const CustomerListItemStyle: React.CSSProperties = {
     display: 'grid',
@@ -25,9 +26,15 @@ export default class CustomerList extends React.Component<CustomerListProps> {
 
         return(
             <Card key={dni} style={CustomerListItemStyle}>
-                <Link to={`${urlpath}/${dni}`} style={LinkStyle} >{name}</Link>
-                <Link to={`${urlpath}/${dni}/${edit}`} style={LinkStyle}>{edit}</Link>
-                <Link to={`${urlpath}/${dni}/${del}`} style={LinkStyle} >{del}</Link>
+                <Link to={`${urlpath}/${dni}`} style={LinkStyle} >
+                    { name }
+                </Link>
+                <Link to={`${urlpath}/${dni}/${edit}`} style={LinkStyle}>
+                    { capitalizeFirstLetter(edit) }
+                </Link>
+                <Link to={`${urlpath}/${dni}/${del}`} style={LinkStyle}>
+                    { capitalizeFirstLetter(del) }
+                </Link>
             </Card>
         )
     }
