@@ -19,21 +19,28 @@ class HomeContainer extends React.Component <RouteComponentProps> {
         this.props.history.push('/customers');
     }
     
-    render() {
-        const body = (
+    renderBody() {
+        return (
             <ButtonGroup size="lg">
                 <Button style={buttonStyle} onClick={this.handleCustomerListClick}>Customer List</Button>
                 <Button style={buttonStyle} >Product List</Button>
                 <Button style={buttonStyle} >Employees List</Button>
             </ButtonGroup>
         )
-        
-        const footer = (
+    }
+
+    renderFooter() {
+        return (
             <div> </div>
         )
+    }
 
+    render() {
         return (
-            <AppFrame header={'Home'} body={body} footer={footer} />
+            <AppFrame 
+                header={'Home'} 
+                body={this.renderBody()} 
+                footer={this.renderFooter()} />
         )
     }
 }
