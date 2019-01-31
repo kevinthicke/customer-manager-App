@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomeContainer from './containers/HomeContainer';
+import CustomerContainer from './containers/CustomerContainer';
 
 const body = (
   <div>
@@ -55,7 +56,7 @@ const customers = [
 const urlpath='/customers'
 
 export default class App extends React.Component <{}, {}> {
-  renderHome = () => <h1> Home</h1>;
+  
   renderCustomerList = () => <h1>Customer List</h1>;
   renderNewCustomer = () => <h1>renderNewCustomer</h1>;
   renderCustomer = () => <h1>render customer</h1>;
@@ -65,7 +66,7 @@ export default class App extends React.Component <{}, {}> {
       <Router>
         <Container>
           <Route exact path='/' component={HomeContainer} />
-          <Route exact path='/customers' component={this.renderCustomerList} />
+          <Route exact path='/customers' component={CustomerContainer} />
           <Switch>
             <Route exact path='/customers/new' component={this.renderNewCustomer} />
             <Route exact path='/customer/:dni' component={this.renderCustomer} />

@@ -5,7 +5,13 @@ import { Link } from 'react-router-dom';
 
 const CustomerListItemStyle: React.CSSProperties = {
     display: 'grid',
-    gridTemplateColumns: '5fr 1fr 1fr'
+    gridTemplateColumns: '5fr 1fr 1fr',
+    width: '60vw',
+    fontSize: '14pt'
+}
+
+const LinkStyle: React.CSSProperties = {
+    margin: '10px'
 }
 
 export interface CustomerListProps {
@@ -19,9 +25,9 @@ export default class CustomerList extends React.Component<CustomerListProps> {
 
         return(
             <Card key={dni} style={CustomerListItemStyle}>
-                <Link to={`${urlpath}/${dni}`}>{name}</Link>
-                <Link to={`${urlpath}/${dni}/${edit}`}>{edit}</Link>
-                <Link to={`${urlpath}/${dni}/${del}`}>{del}</Link>
+                <Link to={`${urlpath}/${dni}`} style={LinkStyle} >{name}</Link>
+                <Link to={`${urlpath}/${dni}/${edit}`} style={LinkStyle}>{edit}</Link>
+                <Link to={`${urlpath}/${dni}/${del}`} style={LinkStyle} >{del}</Link>
             </Card>
         )
     }
